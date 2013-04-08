@@ -77,5 +77,5 @@ end
 
 if ARGV[0] == 'reset'
   DataMapper.auto_migrate! 
-  DataMapper.finalize
 end
+DataMapper.finalize

@@ -1,0 +1,5 @@
+1.copy seeds.yml.example to seeds.yml
+2.bundle install
+3.create mysql database 'saushi'
+4.irb -r spider.rb (run spider)
+5.thin start (run sinatra)

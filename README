@@ -1,5 +1,13 @@
+Fork from great Saushi Engine.
+
+
+QUICK INSTALL INSTRUCTIONS
+
 1.copy seeds.yml.example to seeds.yml
 2.bundle install
 3.create mysql database 'saushi'
 4.irb -r spider.rb (run spider)
 5.thin start (run sinatra)
+
+(c) Saushi, 2009
+changes by NK, 2013

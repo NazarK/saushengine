@@ -26,7 +26,7 @@ class Spider
             open(page, "User-Agent" => USER_AGENT) { |s|
               (Hpricot(s)/"a").each { |a|                
                 url = scrub(a.attributes['href'], host)
-                newfound_pages << url unless url.nil? or !robot.allowed? url or newfound_pages.to_s.include? url
+                newfound_pages << url unless url.nil? or !robot.allowed? url or newfound_pages.include? url
               }
             } 
           end

@@ -1,12 +1,13 @@
 require 'rubygems'
 require 'dm-core'
-require 'dm-more'
+#require 'dm-more'
+require 'dm-migrations'
 require 'stemmer'
 require 'robots'
 require 'open-uri'
 require 'hpricot'
 
-DataMapper.setup(:default, 'mysql://root:root@localhost/saush')
+DataMapper.setup(:default, 'mysql://root:@localhost/saush')
 FRESHNESS_POLICY = 60 * 60 * 24 * 7 # 7 days
 
 class Page
@@ -76,3 +77,4 @@ class String
 end
 
 DataMapper.auto_migrate! if ARGV[0] == 'reset'
+DataMapper.finalize

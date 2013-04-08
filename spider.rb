@@ -26,12 +26,13 @@ class Spider
             open(page, "User-Agent" => USER_AGENT) { |s|
               (Hpricot(s)/"a").each { |a|                
                 url = scrub(a.attributes['href'], host)
-                newfound_pages << url unless url.nil? or !robot.allowed? url or newfound_pages.include? url
+                newfound_pages << url unless url.nil? or !robot.allowed? url or newfound_pages.to_s.include? url
               }
             } 
           end
         rescue => e 
           print "\n** Error encountered crawling - #{page} - #{e.to_s}"
+          puts e.backtrace
         rescue Timeout::Error => e
           print "\n** Timeout encountered - #{page} - #{e.to_s}"
         end
@@ -47,8 +48,8 @@ class Spider
     t0 = Time.now
     page = Page.find(scrub(url))
     
-    # if the page is not in the index, then index it
-    if page.new_record? then    
+    if page.new? then    
+      puts 'if the page is not in the index, then index it'
       index(url) { |doc_words, title|
         dsize = doc_words.size.to_f
         puts " [new] - (#{dsize.to_i} words)"
@@ -60,8 +61,8 @@ class Spider
         }
       }
     
-    # if it is but it is not fresh, then update it
     elsif not page.fresh? then
+      puts 'if it is but it is not fresh, then update it'
       index(url) { |doc_words, title|
         dsize = doc_words.size.to_f
         puts " [refreshed] - (#{dsize.to_i} words)"

@@ -15,9 +15,9 @@ post '/search' do
   erb :search
 end
 
-error MysqlError do
-    'Can\'t find this in the index, try <a href=\'/\'>again</a>'
-end
+#error MysqlError do
+#    'Can\'t find this in the index, try <a href=\'/\'>again</a>'
+#end
 
 error do
     'Something whacked happened dude, try <a href=\'/\'>again</a>'
